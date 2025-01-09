@@ -156,3 +156,87 @@ where
 `sale`>50000;
 #실습 4-9 전체 매출 가운데 최저, 최고, 매출을 구하시오
 select max(`sale`)as '최저',min(`sale`) as '최고' from `sales` where `year`=2020;
+
+
+#실습 4-10
+select @@sql_mode;
+
+set session sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+select *from `sales`;
+select *from `sales` GROUP BY `uid`;
+select *from `sales` GROUP BY `year`;
+select *from `sales` GROUP BY `uid`, `year`;
+select `uid`, count(*)as `건수` from `sales` GROUP BY `uid`;
+select `uid`, sum(`sale`)as `합계` from `sales` GROUP BY `uid`;
+
+#실습 4-11
+select `uid`, sum(`sale`)as `합계`
+ from `sales`
+ GROUP BY `uid`
+ Having
+	`합계` >=200000;
+    
+
+select *from `sales` GROUP BY `uid`, `year`;
+select `uid`, avg(`sale`)as `평균` from `sales` group by `uid`;
+
+
+
+#실습 4-12
+create table `sales2` like `sales`;
+insert into `sales2` select *from `sales`;
+update `sales2` set `year`= `year`+3;
+select *from `sales2`;
+
+select *from `sales`
+union
+select *from `sales2` ;
+
+select `uid`, `year`, `sale` from sales
+union
+select `uid`, `year`, `sale` from sales2;
+
+select `uid`,`year`, sum(sale) as `합계`
+from `sales`
+group by `uid`, `year`
+union 
+select `uid`, `year`, sum(sale) as `합계`
+from `sales2`
+group by `uid`, `year`
+order by `year` ASC, `합계` DESC;
+
+
+
+#실습4-13
+
+select * from `sales` inner join `member` on `sales`.`uid`= `member`.`uid`;
+
+select 
+	*
+from `member` as a
+join `department` as b
+on a.dep = b.depNo;
+
+select 
+	*
+from `sales` as a
+join `member` as b using (`uid`);
+
+select
+	*
+from `sales` as a
+join `member` as b on a.uid=b.uid
+join `department` as c on b.dep= c.depNo;
+
+#실습 4-14
+insert into `sales`(`uid`,`year`,`month`,`sale`) values ('a201',2020,2,15500);
+select
+	*
+from `sales` as a 
+inner join `member` as b on a.uid= b.uid; #inner, left, right 차이 확인
+
+#실습 4-15
+#실습 4-16
+#실습 4-17
+
