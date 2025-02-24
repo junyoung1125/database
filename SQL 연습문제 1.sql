@@ -9,7 +9,7 @@ grant all privileges on Shop.* to 'shop'@'%';
 flush privileges;
 
 #실습 1-2
-create table `Customer`(
+create table `customer`(
 	`custld`	VARCHAR(10) NOT NULL primary key ,
     `name`		VARCHAR(10) NOT NUll, 
     `hp`		CHAR(13) UNIQUE key Default NULL,
@@ -17,7 +17,7 @@ create table `Customer`(
     `rdate`		date NOT Null
 );
 
-create table `Product` (
+create table `product`user1 (
 	`prodNo`	INT Not NUll Primary key,
     `prodName`	VARCHAR(10) Not Null,
     `stock`		INT NOT NULL default 0,
@@ -25,7 +25,9 @@ create table `Product` (
     `company`	VARCHAR(20) Not null
 );
 
-create table `Order`(
+alter table `product` modify `prodNo` int auto_increment;
+
+create table `order`(
 	`orderNo`	INT NOT Null auto_increment primary key,
     `orderId`	VARCHAR(10) Not Null,
     `orderProduct`	INT NOT NUll,
@@ -34,7 +36,7 @@ create table `Order`(
 );
 
 
-#실습 1-3
+#실습 1-3customer
 
 insert into`Customer` values('c101','김유신','010-1234-1001','김해시 봉황동','2022-01-01');
 insert into`Customer` values('c102','김춘추','010-1234-1002','경주시 보문동','2022-01-02');

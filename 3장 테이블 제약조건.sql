@@ -12,7 +12,7 @@ CREATE TABLE `user2` (
 
 );
 #실습 3-2
-insert into `user2` values ('A101','김유신','1999-02-03','김해');
+insert INTO `user2` values ('A101','김유신','1999-02-03','김해');
 insert into `user2` values ('A102','김춘추','1991-02-03','경주');
 insert into `user2` values ('A103','장보고','1992-02-03','완도'); 
 
